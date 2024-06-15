@@ -1,44 +1,30 @@
+// controllers/userController.js
 const User = require('../models/User');
 
+// Create a new user
 exports.createUser = async (req, res) => {
   try {
-    const { username, password, name, email, role } = req.body;
-    const newUser = await User.create({
-      username,
-      password,
-      name,
-      email,
-      role,
-    });
-    res.status(201).json({
-      message: 'User created successfully',
-      user: newUser,
-    });
+    const { email, username, password, name, role, branch } = req.body;
+    const user = await User.create({ email, username, password, name, role, branch });
+    res.status(201).json(user);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      message: 'Error creating user',
-      error: error.message,
-    });
+    res.status(500).json({ message: 'Error creating user', error: error.message });
   }
 };
 
-
+// Delete a user by email
 exports.deleteUser = async (req, res) => {
   try {
-    const userId = req.params.id; // Assuming you pass the user ID in the request params
-    console.log('User ID to delete:', userId); // Debugging log
-    const user = await User.findByPk(userId);
+    const { email } = req.params;
+    const user = await User.findByPk(email);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
-    await user.destroy(); // Delete the user
-    console.log('User deleted:', user); // Debugging log
-
+    await user.destroy();
     res.status(200).json({ message: 'User deleted successfully' });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: 'Error deleting user', error: error.message });
   }
 };
+
+

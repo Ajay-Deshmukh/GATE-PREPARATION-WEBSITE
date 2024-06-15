@@ -1,9 +1,12 @@
+// routes/testRoutes.js
 const express = require('express');
-const testController = require('../controllers/testController');
 const router = express.Router();
+const testController = require('../controllers/testController');
 
-router.post('/tests', testController.createTest);
+// Create a new test
+router.post('/tests/', testController.createTest);
+
+// Delete a test by ID
 router.delete('/tests/:id', testController.deleteTest);
-// Additional test routes can be added here
 
 module.exports = router;
