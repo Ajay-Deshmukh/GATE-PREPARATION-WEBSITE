@@ -6,7 +6,7 @@ import './index.css';
 function App() {
   return (  
     <div
-   className="dark:bg-black min-h-screen">
+   className=" dark:bg-black min-h-screen">
     <Header/>
     <AppRoutes/>
     <Footer/>
