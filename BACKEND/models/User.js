@@ -3,8 +3,8 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
 const User = sequelize.define('User', {
-  email: { type: DataTypes.STRING, primaryKey: true, allowNull: false },
-  username: { type: DataTypes.STRING, unique: true, allowNull: false },
+  email: { type: DataTypes.STRING, primaryKey: true, allowNull: false,unique: true },
+  username: { type: DataTypes.STRING, unique: true, allowNull: false,unique: true, },
   password: { type: DataTypes.STRING, allowNull: false },
   name: { type: DataTypes.STRING, allowNull: false },
   role: { type: DataTypes.ENUM('student', 'teacher'), allowNull: false },
@@ -13,6 +13,6 @@ const User = sequelize.define('User', {
 }, {
   timestamps: true,
   updatedAt: false
-});
+}); 
 
 module.exports = User;

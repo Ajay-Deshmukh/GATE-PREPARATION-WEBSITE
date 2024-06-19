@@ -1,4 +1,4 @@
-const Attempt = require('../models/Attempt');
+const Attempt = require('../models/TestAttempt');
 
 exports.createAttempt = async (req, res) => {
   try {

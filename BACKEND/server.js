@@ -1,8 +1,10 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const sequelize = require('./config/database');
 const userRoutes = require('./routes/userRoutes');
 const testRoutes = require('./routes/testRoutes');
 const attemptRoutes = require('./routes/attemptRoutes');
+
 require('dotenv').config();
 
 const app = express();
