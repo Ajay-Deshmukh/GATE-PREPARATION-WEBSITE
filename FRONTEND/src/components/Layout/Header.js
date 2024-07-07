@@ -125,7 +125,7 @@ export const Header = () => {
 
   return (
     <header>
-      <nav className="bg-white dark:bg-primary-700 border:gray-200 dark:bg-gray-900">
+      <nav className="bg-white dark:bg-primary-700 border:gray-200">
         <div className="max-w-screen-xl flex items-center justify-between mx-auto p-2">
           <Link to="/" className="flex items-center rtl:space-x-reverse">
             <img

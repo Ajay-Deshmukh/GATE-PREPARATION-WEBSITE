@@ -8,7 +8,7 @@ function App() {
     <div
    className=" dark:bg-black min-h-screen">
     <Header/>
-    <AppRoutes/>
+    <AppRoutes background-color = "gray"/>
     <Footer/>
     </div>
   );
