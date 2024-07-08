@@ -7,10 +7,10 @@ import { Faq } from "./components/Faq";
 
 export const Home = () => {
   return (
-    <main className="ml-5 mr-5">
+      <main className="ml-5 mr-5">
       <Hero />
       <Testimonial />
       <Faq/>
-    </main>
+      </main> 
   );
 };

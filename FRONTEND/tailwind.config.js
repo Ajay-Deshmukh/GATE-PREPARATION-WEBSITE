@@ -18,6 +18,7 @@ module.exports = {
           700: '#740630',
           800: '#610528',
           900: '#4E0420',
+          901: '#fce3ed', //light shade claret
         }
       }
     },
