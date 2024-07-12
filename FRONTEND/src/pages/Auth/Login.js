@@ -8,25 +8,34 @@ export const Login = () => {
   const passwordRef = useRef();
   const navigate = useNavigate();
 
-  async function handleLogin(event){
+  async function handleLogin(event) {
     event.preventDefault();
-    try{
-      const authDetails ={
-        email:emailRef.current.value,
+    console.log("Login button clicked"); // Debugging log
+    try {
+      const authDetails = {
+        email: emailRef.current.value,
         password: passwordRef.current.value
       };
+      console.log("Auth details:", authDetails); // Debugging log
       const data = await login(authDetails);
-      data.accessToken ? navigate("/products/") : toast.error(data,{
-        closeButton:true,
-        position:"top-right"
-      });
-    } catch(error){toast.error(error.message,{
-        closeButton:true,
-        position:"top-right"
-      });
+      console.log("Login response:", data); // Debugging log
+      if (data.accessToken) {
+        navigate("/products/");
+      } else {
+        toast.error(data.message, {
+          closeButton: true,
+          position: "top-right"
+        });
       }
+    } catch (error) {
+      console.error("Login error:", error); // Debugging log
+      toast.error(error.message, {
+        closeButton: true,
+        position: "top-right"
+      });
     }
-  
+  }
+
   return (
     <main>
       <section>
@@ -34,7 +43,7 @@ export const Login = () => {
           Login
         </p>
       </section>
-      <form>
+      <form onSubmit={handleLogin}>
         <div className="mb-6">
           <label
             htmlFor="email"
@@ -71,11 +80,14 @@ export const Login = () => {
         <button
           type="submit"
           className="hover:cursor-pointer text-white bg-primary-700 hover:bg-primary-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-        onClick={handleLogin}>
+        >
           Log In
         </button>
       </form>
-      <button className="hover:cursor-pointer text-white bg-primary-700 hover:bg-primary-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-5">
+      <button
+        className="hover:cursor-pointer text-white bg-primary-700 hover:bg-primary-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-5"
+        onClick={() => navigate("/dashboard")}
+      >
         Dashboard
       </button>
     </main>

@@ -2,28 +2,30 @@
 const express = require('express');
 const router = express.Router();
 const testController = require('../controllers/testController');
+const questionController = require('../controllers/questionController');
 const authMiddleware = require('../middleware/authMiddleware');
 
+
 // Create a new test
-router.post('/', testController.createTest);
+router.post('/createTest', testController.createTest);
 
 // Get all tests
-router.get('/', testController.getAllTests);
+router.get('/getAllTests', testController.getAllTests);
 
 // Get a single test by ID
-router.get('/:id', testController.getTestById);
+router.get('getTestById/:id', testController.getTestById);
 
 // Update a test
-router.put('/:id', testController.updateTest);
+router.put('updateTestById/:id', testController.updateTest);
 
 // Delete a test
-router.delete('/:id', testController.deleteTest);
+router.delete('deleteTestById/:id', testController.deleteTest);
 
-// Start a test attempt
-router.post('/start', testController.startTestAttempt);
 
-// Complete a test attempt
-router.post('/complete', testController.completeTestAttempt);
+
+router.post('/start-test', testController.startTest);
+router.post('/submit-response', testController.submitResponse);
+router.post('/complete-test', testController.completeTest);
 
 // Get all test attempts for a user
 router.get('/attempts/user/:user_id', testController.getTestAttemptsByUser);
@@ -37,4 +39,9 @@ router.get('/attempts/:attempt_id/results', testController.getTestAttemptResults
 // Get tests by filters
 router.get('/tests', authMiddleware.authenticateToken, authMiddleware.extractBranchFromCookies, testController.getTests);
 
+
+router.post('/createQuestion', questionController.addQuestion);
+
+
 module.exports = router;
+

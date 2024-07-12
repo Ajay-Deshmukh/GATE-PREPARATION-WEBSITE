@@ -4,9 +4,16 @@ const sequelize = require('../config/database');
 const User = require('./User');
 
 const Test = sequelize.define('Test', {
+  id: { 
+    type: DataTypes.INTEGER, 
+    autoIncrement: true, 
+    primaryKey: true,
+  },
+
   title: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: true,
   },
   description: {
     type: DataTypes.TEXT,
@@ -18,6 +25,10 @@ const Test = sequelize.define('Test', {
   created_by: {
     type: DataTypes.STRING,
     allowNull: false,
+    references: {
+      model: User, // Name of the table
+      key: 'email',
+    },
   },
   chapter: {
     type: DataTypes.STRING,

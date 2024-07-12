@@ -1,8 +1,8 @@
-const Attempt = require('../models/TestAttempt');
+const TestAttempt = require('../models/TestAttempt');
 
 exports.createAttempt = async (req, res) => {
   try {
-    const attempt = await Attempt.create(req.body);
+    const attempt = await TestAttempt.create(req.body);
     res.status(201).json(attempt);
   } catch (error) {
     res.status(400).json({ error: error.message });
